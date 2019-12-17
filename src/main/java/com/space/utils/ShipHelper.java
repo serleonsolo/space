@@ -8,8 +8,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static com.space.controller.ShipOrder.ID;
-
 public class ShipHelper {
 
     public static List<Ship> sort(List<Ship> listShips, ShipOrder shipOrder)
@@ -79,14 +77,14 @@ public class ShipHelper {
         }
         if(customQuery.containsKey(ShipFilter.MIN_SPEED.getFieldName()))
         {
-            Double minSpeedFilter = Math.round(Double.parseDouble(customQuery.get(ShipFilter.MIN_SPEED.getFieldName())) * 100.0) / 100.0;
+            Double minSpeedFilter = Ship.roundDouble(Double.parseDouble(customQuery.get(ShipFilter.MIN_SPEED.getFieldName())));
             listShips = listShips.stream()
                     .filter(x -> x.getSpeed() >= minSpeedFilter)
                     .collect(Collectors.toList());
         }
         if(customQuery.containsKey(ShipFilter.MAX_SPEED.getFieldName()))
         {
-            Double maxSpeedFilter = Math.round(Double.parseDouble(customQuery.get(ShipFilter.MAX_SPEED.getFieldName())) * 100.0) / 100.0;
+            Double maxSpeedFilter = Ship.roundDouble(Double.parseDouble(customQuery.get(ShipFilter.MAX_SPEED.getFieldName())));
             listShips = listShips.stream()
                     .filter(x -> x.getSpeed() <= maxSpeedFilter)
                     .collect(Collectors.toList());
