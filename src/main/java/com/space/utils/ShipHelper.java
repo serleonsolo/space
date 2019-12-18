@@ -58,14 +58,14 @@ public class ShipHelper {
         {
             Long prodDateAfterFilter = Long.parseLong(customQuery.get(ShipFilter.AFTER.getFieldName()));
             listShips = listShips.stream()
-                    .filter(x -> x.getProdDate().getTime() >= prodDateAfterFilter)
+                    .filter(x -> x.getProdDate().getTime() > prodDateAfterFilter)
                     .collect(Collectors.toList());
         }
         if(customQuery.containsKey(ShipFilter.BEFORE.getFieldName()))
         {
             Long prodDateBeforeFilter = Long.parseLong(customQuery.get(ShipFilter.BEFORE.getFieldName()));
             listShips = listShips.stream()
-                    .filter(x -> x.getProdDate().getTime() <= prodDateBeforeFilter)
+                    .filter(x -> x.getProdDate().getTime() < prodDateBeforeFilter)
                     .collect(Collectors.toList());
         }
         if(customQuery.containsKey(ShipFilter.IS_USED.getFieldName()))
